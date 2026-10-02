@@ -446,12 +446,7 @@ namespace wmbus {
     LOG_PIN("    CS Pin:   ", this->spi_conf_.cs);
     LOG_PIN("    GDO0 Pin: ", this->spi_conf_.gdo0);
     LOG_PIN("    GDO2 Pin: ", this->spi_conf_.gdo2);
-    std::string drivers = "";
-    for (DriverInfo* p : allDrivers()) {
-      drivers += p->name().str() + ", ";
-    }
-    drivers.erase(drivers.size() - 2);
-    ESP_LOGCONFIG(TAG, "  Available drivers: %s", drivers.c_str());
+    // Listing allDrivers() here crashed (invalid driver vector), so it is not logged.
     for (const auto &ele : this->wmbus_listeners_) {
       ele.second->dump_config();
     }
